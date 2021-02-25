@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
-//import CardList from './components/CardList';
-import PokemonCard from './components/PokemonCard';
+import PokemonCard from './PokemonCard';
 
 function App() {
 	let [List, updateList] = useState();
 
 	useEffect(() => {
-		fetch('https://pokeapi.co/api/v2/pokemon/')
+		fetch('https://pokeapi.co/api/v2/pokemon?limit=100&offset=200')
 			.then(res => res.json())
 			.then(data => {
 				//console.log(data.results.map(el => console.log(el.name)));
@@ -18,9 +17,10 @@ function App() {
 
 	return (
 		<div className='App'>
-			<h1>nkj</h1>
-			{List}
-			<button>add</button>
+			<div className='title-container'>
+				<img src='https://cdn.bulbagarden.net/upload/4/4b/Pok%C3%A9dex_logo.png' alt='' />
+			</div>
+			<div className='card-container'>{List}</div>
 		</div>
 	);
 }
