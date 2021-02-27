@@ -4,7 +4,6 @@ const CategoryType = ({ handleCategory }) => {
 			<option value='all'>All</option>
 			<option value='type'>Type</option>
 			<option value='habitat'>Habitat</option>
-			<option value='gender'>Gender</option>
 			<option value='ability'>Ability</option>
 		</select>
 	);

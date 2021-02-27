@@ -77,8 +77,12 @@ function App() {
 						break;
 
 					case 'habitat':
-						console.log(data.pokemon_species[0]);
-						//updateList(data.pokemon_species.map(el => <PokemonCard key={el.name} Name={el.name} infoURL={el.url} />));
+						//console.log(data.pokemon_species[0]);
+						updateList(
+							data.pokemon_species.map(el => (
+								<PokemonCard key={el.name} Name={el.name} infoURL={`https://pokeapi.co/api/v2/pokemon/${el.name}`} />
+							))
+						);
 						break;
 
 					case 'ability':
