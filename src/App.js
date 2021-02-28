@@ -30,6 +30,14 @@ function App() {
 				updateURL('https://pokeapi.co/api/v2/ability/');
 				break;
 
+			case 'color':
+				updateURL('https://pokeapi.co/api/v2/pokemon-color');
+				break;
+
+			case 'shape':
+				updateURL('https://pokeapi.co/api/v2/pokemon-shape');
+				break;
+
 			default:
 				alert('Error !!!!!');
 				break;
@@ -77,6 +85,24 @@ function App() {
 						break;
 
 					case 'habitat':
+						//console.log(data.pokemon_species[0]);
+						updateList(
+							data.pokemon_species.map(el => (
+								<PokemonCard key={el.name} Name={el.name} infoURL={`https://pokeapi.co/api/v2/pokemon/${el.name}`} />
+							))
+						);
+						break;
+
+					case 'color':
+						//console.log(data.pokemon_species[0]);
+						updateList(
+							data.pokemon_species.map(el => (
+								<PokemonCard key={el.name} Name={el.name} infoURL={`https://pokeapi.co/api/v2/pokemon/${el.name}`} />
+							))
+						);
+						break;
+
+					case 'shape':
 						//console.log(data.pokemon_species[0]);
 						updateList(
 							data.pokemon_species.map(el => (
