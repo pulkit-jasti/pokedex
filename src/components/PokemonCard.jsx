@@ -34,8 +34,8 @@ const PokemonCard = ({ Name, infoURL }) => {
 				<img src={info.imageURL} alt='' />
 			</div>
 			<h2>{Name}</h2>
-			<h5>Weight: {info.weight}</h5>
-			<h5>Type: {info.type}</h5>
+			<h4>Weight: {info.weight}</h4>
+			<h4>Type: {info.type}</h4>
 			<h4>Stats:</h4>
 			<ul>
 				<li>HP: {info.hp}</li>

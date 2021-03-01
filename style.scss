@@ -27,6 +27,10 @@ header {
 		display: flex;
 	}
 
+	h5 {
+		display: none;
+	}
+
 	form {
 		display: flex;
 		border-radius: 0.25em;
@@ -105,6 +109,7 @@ footer {
 		color: rgb(24, 24, 24);
 		word-spacing: 2.5px;
 		font-weight: 700;
+		text-align: center;
 
 		a {
 			color: #fff;
@@ -155,12 +160,12 @@ select::-ms-expand {
 }
 
 .select-2 {
-	width: 170px;
+	width: 180px;
 }
 
 select {
 	flex: 1;
-	padding: 0 0.5em;
+	padding: 0 10px;
 	color: #fff;
 	cursor: pointer;
 }
@@ -183,4 +188,34 @@ select {
 /* Transition */
 .select:hover::after {
 	color: #f39c12;
+}
+
+@media screen and (max-width: 900px) {
+	.card-container {
+		padding-top: 240px;
+	}
+	header {
+		padding: 10px 0 15px 0;
+		flex-direction: column;
+
+		.title-container {
+			order: 1;
+		}
+
+		div {
+			order: 2;
+			margin: 5px 0;
+		}
+
+		h5 {
+			color: #fff;
+			margin: 0 0 8px 0;
+			display: unset;
+			order: 3;
+		}
+
+		form {
+			order: 4;
+		}
+	}
 }

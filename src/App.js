@@ -122,7 +122,7 @@ function App() {
 			<footer>
 				<p>
 					Created by <a href='https://linktr.ee/pulkit_jasti'>Pulkit Jasti</a> | Source:{' '}
-					<a href='https://github.com/pulkit-jasti'>GitHub</a>
+					<a href='https://github.com/pulkit-jasti'>GitHub</a> (Star the repo please)
 				</p>
 				<p>
 					API Used: <a href='https://pokeapi.co/'>https://pokeapi.co/</a>
