@@ -55,7 +55,6 @@ function App() {
 
 	function handleSearch(event) {
 		event.preventDefault();
-		console.log(searchValue);
 
 		fetch(`https://pokeapi.co/api/v2/pokemon/${searchValue}`)
 			.then(res => res.json())
@@ -69,7 +68,6 @@ function App() {
 	}
 
 	function handleSearchInput(event) {
-		console.log();
 		setSearchValue(event.target.value);
 	}
 
@@ -92,7 +90,7 @@ function App() {
 				}
 			})
 			.catch(console.log);
-	}, [fetchURL]);
+	}, [fetchURL, category]);
 
 	useEffect(() => {
 		fetch(cardRenderURL)
@@ -111,7 +109,7 @@ function App() {
 				}
 			})
 			.catch(console.log);
-	}, [cardRenderURL]);
+	}, [cardRenderURL, category]);
 
 	return (
 		<div className='App'>
