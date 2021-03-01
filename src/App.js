@@ -9,6 +9,7 @@ function App() {
 	let [categoryOptions, setCategoryOptions] = useState('Select an option');
 	let [optionsURL, setOptionsURL] = useState();
 	let [cardRenderURL, setCardRenderURL] = useState();
+	let [searchValue, setSearchValue] = useState();
 
 	function handleCategory(val) {
 		updateCategory(val.target.value);
@@ -52,11 +53,34 @@ function App() {
 		});
 	}
 
+	function handleSearch(event) {
+		event.preventDefault();
+		console.log(searchValue);
+
+		fetch(`https://pokeapi.co/api/v2/pokemon/${searchValue}`)
+			.then(res => res.json())
+			.then(data =>
+				updateList([<PokemonCard key={searchValue} Name={searchValue} infoURL={`https://pokeapi.co/api/v2/pokemon/${searchValue}`} />])
+			)
+			.catch(err => {
+				console.log(err);
+				updateList(<h1>The pokemon '{searchValue}' does not exist in the pokedex</h1>);
+			});
+	}
+
+	function handleSearchInput(event) {
+		console.log();
+		setSearchValue(event.target.value);
+	}
+
 	useEffect(() => {
 		fetch(fetchURL)
 			.then(res => res.json())
 			.then(data => {
-				if (category !== 'all') {
+				if (category === 'all') {
+					setCategoryOptions(<option>Select a category</option>);
+					updateList(data.results.map(el => <PokemonCard key={el.name} Name={el.name} infoURL={el.url} />));
+				} else {
 					setOptionsURL(data.results);
 					setCategoryOptions(
 						data.results.map(el => (
@@ -65,11 +89,6 @@ function App() {
 							</option>
 						))
 					);
-					console.log(data);
-					//updateList(data.pokemon.map(el => <PokemonCard key={el.pokemon.name} Name={el.pokemon.name} infoURL={el.pokemon.url} />));
-				} else {
-					setCategoryOptions(<option>Select a category</option>);
-					updateList(data.results.map(el => <PokemonCard key={el.name} Name={el.name} infoURL={el.url} />));
 				}
 			})
 			.catch(console.log);
@@ -96,7 +115,13 @@ function App() {
 
 	return (
 		<div className='App'>
-			<Header categoryHandler={handleCategory} optionsHandler={handleOptions} categoryOptionsList={categoryOptions} />
+			<Header
+				categoryHandler={handleCategory}
+				optionsHandler={handleOptions}
+				categoryOptionsList={categoryOptions}
+				searchHandler={handleSearch}
+				searchInputHandler={handleSearchInput}
+			/>
 			<div className='card-container'>{List}</div>
 		</div>
 	);

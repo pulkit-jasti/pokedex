@@ -1,4 +1,4 @@
-const Header = ({ categoryHandler, optionsHandler, categoryOptionsList }) => {
+const Header = ({ categoryHandler, optionsHandler, categoryOptionsList, searchHandler, searchInputHandler }) => {
 	return (
 		<header>
 			<select name='category' id='category-menu' onChange={categoryHandler}>
@@ -15,6 +15,10 @@ const Header = ({ categoryHandler, optionsHandler, categoryOptionsList }) => {
 			<div className='title-container'>
 				<img src='https://cdn.bulbagarden.net/upload/4/4b/Pok%C3%A9dex_logo.png' alt='' />
 			</div>
+			<form action='' onSubmit={searchHandler}>
+				<input type='text' onChange={searchInputHandler} />
+				<button type='submit'>Search</button>
+			</form>
 		</header>
 	);
 };
