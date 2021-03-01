@@ -40,7 +40,7 @@ function App() {
 				break;
 
 			default:
-				alert('Error !!!!!');
+				console.log('This is from lineeee: 43');
 				break;
 		}
 	}
@@ -104,8 +104,6 @@ function App() {
 							<PokemonCard key={el.name} Name={el.name} infoURL={`https://pokeapi.co/api/v2/pokemon/${el.name}`} />
 						))
 					);
-				} else {
-					alert('There seemes to be some kind of error');
 				}
 			})
 			.catch(console.log);
@@ -121,6 +119,15 @@ function App() {
 				searchInputHandler={handleSearchInput}
 			/>
 			<div className='card-container'>{List}</div>
+			<footer>
+				<p>
+					Created by <a href='https://linktr.ee/pulkit_jasti'>Pulkit Jasti</a> | Source:{' '}
+					<a href='https://github.com/pulkit-jasti'>GitHub</a>
+				</p>
+				<p>
+					API Used: <a href='https://pokeapi.co/'>https://pokeapi.co/</a>
+				</p>
+			</footer>
 		</div>
 	);
 }
