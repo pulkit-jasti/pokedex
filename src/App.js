@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import CategoryType from './CategoryType';
-import PokemonCard from './PokemonCard';
+import Header from './components/Header';
+import PokemonCard from './components/PokemonCard';
 
 function App() {
 	let [fetchURL, updateURL] = useState('https://pokeapi.co/api/v2/pokemon?limit=100&offset=0');
@@ -79,44 +79,16 @@ function App() {
 		fetch(cardRenderURL)
 			.then(res => res.json())
 			.then(data => {
-				switch (category) {
-					case 'type':
-						updateList(data.pokemon.map(el => <PokemonCard key={el.pokemon.name} Name={el.pokemon.name} infoURL={el.pokemon.url} />));
-						break;
-
-					case 'habitat':
-						//console.log(data.pokemon_species[0]);
-						updateList(
-							data.pokemon_species.map(el => (
-								<PokemonCard key={el.name} Name={el.name} infoURL={`https://pokeapi.co/api/v2/pokemon/${el.name}`} />
-							))
-						);
-						break;
-
-					case 'color':
-						//console.log(data.pokemon_species[0]);
-						updateList(
-							data.pokemon_species.map(el => (
-								<PokemonCard key={el.name} Name={el.name} infoURL={`https://pokeapi.co/api/v2/pokemon/${el.name}`} />
-							))
-						);
-						break;
-
-					case 'shape':
-						//console.log(data.pokemon_species[0]);
-						updateList(
-							data.pokemon_species.map(el => (
-								<PokemonCard key={el.name} Name={el.name} infoURL={`https://pokeapi.co/api/v2/pokemon/${el.name}`} />
-							))
-						);
-						break;
-
-					case 'ability':
-						updateList(data.pokemon.map(el => <PokemonCard key={el.pokemon.name} Name={el.pokemon.name} infoURL={el.pokemon.url} />));
-						break;
-
-					default:
-						break;
+				if (category === 'type' || category === 'ability') {
+					updateList(data.pokemon.map(el => <PokemonCard key={el.pokemon.name} Name={el.pokemon.name} infoURL={el.pokemon.url} />));
+				} else if (category === 'habitat' || category === 'color' || category === 'shape') {
+					updateList(
+						data.pokemon_species.map(el => (
+							<PokemonCard key={el.name} Name={el.name} infoURL={`https://pokeapi.co/api/v2/pokemon/${el.name}`} />
+						))
+					);
+				} else {
+					alert('There seemes to be some kind of error');
 				}
 			})
 			.catch(console.log);
@@ -124,13 +96,7 @@ function App() {
 
 	return (
 		<div className='App'>
-			<div className='title-container'>
-				<img src='https://cdn.bulbagarden.net/upload/4/4b/Pok%C3%A9dex_logo.png' alt='' />
-			</div>
-			<CategoryType handleCategory={handleCategory} />
-			<select name='category' id='category-menu' onChange={handleOptions}>
-				{categoryOptions}
-			</select>
+			<Header categoryHandler={handleCategory} optionsHandler={handleOptions} categoryOptionsList={categoryOptions} />
 			<div className='card-container'>{List}</div>
 		</div>
 	);
